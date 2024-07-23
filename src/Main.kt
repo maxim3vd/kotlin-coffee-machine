@@ -1,4 +1,7 @@
 fun main() {
+    data class CupOfCoffee(val water: Int = 200, val milk: Int = 50, val coffeeBeans: Int = 15)
+    val cupOfCoffee = CupOfCoffee()
+
     data class Ingredient(val name: String, val unit: String, private var _quantity: Int) {
         val quantity: Int
             get() = _quantity
@@ -21,5 +24,5 @@ fun main() {
     }
 
     println("Write how many cups of coffee you will need:")
-    val cupsOfCoffee: Int = readln().toInt()
+    val cupsOfCoffeeRequested: Int = readln().toInt()
 }
