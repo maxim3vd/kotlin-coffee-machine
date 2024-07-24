@@ -35,4 +35,12 @@ fun main() {
     val cupsOfCoffeeRequested: Int = readln().toInt()
 
     val cupOfCoffeeAvailable = cupsOfCoffeeAvailable(ingredients)
+
+    println(
+        when {
+            cupsOfCoffeeRequested > cupOfCoffeeAvailable -> "No, I can make only $cupOfCoffeeAvailable cups of coffee"
+            cupsOfCoffeeRequested < cupOfCoffeeAvailable -> "Yes, I can make that amount of coffee (and even ${cupOfCoffeeAvailable - cupsOfCoffeeRequested} more than that)"
+            else -> "Yes, I can make that amount of coffee"
+        }
+    )
 }
