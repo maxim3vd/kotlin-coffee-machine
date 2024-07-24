@@ -1,6 +1,5 @@
 fun main() {
     data class CupOfCoffee(val water: Int = 200, val milk: Int = 50, val coffeeBeans: Int = 15)
-    val cupOfCoffee = CupOfCoffee()
 
     data class Ingredient(val name: String, val unit: String, private var _quantity: Int) {
         val quantity: Int
@@ -9,6 +8,15 @@ fun main() {
         fun setQuantity(newQuantity: Int) {
             _quantity = newQuantity
         }
+    }
+
+    fun cupsOfCoffeeAvailable(ingredients: Map<String, Ingredient>): Int {
+        val cupOfCoffee = CupOfCoffee()
+        val cupsByWater = ingredients["water"]!!.quantity / cupOfCoffee.water
+        val cupsByMilk = ingredients["milk"]!!.quantity / cupOfCoffee.milk
+        val cupsByCoffeeBeans = ingredients["coffee beans"]!!.quantity / cupOfCoffee.coffeeBeans
+
+        return minOf(cupsByWater, cupsByMilk, cupsByCoffeeBeans)
     }
 
     val ingredients: Map<String, Ingredient> = mapOf(
@@ -25,4 +33,6 @@ fun main() {
 
     println("Write how many cups of coffee you will need:")
     val cupsOfCoffeeRequested: Int = readln().toInt()
+
+    val cupOfCoffeeAvailable = cupsOfCoffeeAvailable(ingredients)
 }
